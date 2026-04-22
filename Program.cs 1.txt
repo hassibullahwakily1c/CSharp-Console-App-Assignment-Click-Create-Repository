@@ -1,0 +1,31 @@
+// Allows the program to use basic system functionality like Console.WriteLine.
+using System;
+
+// Defines the namespace for this project.
+namespace EmployeeInterfaceAssignment
+{
+    // Creates the main Program class.
+    class Program
+    {
+        // This is the main method where the program starts running.
+        static void Main(string[] args)
+        {
+            // Creates a new Employee object and assigns values to its properties.
+            Employee employee = new Employee
+            {
+                Id = 101,
+                FirstName = "Jordan",
+                LastName = "Miller"
+            };
+
+            // Uses polymorphism to create an object of type IQuittable.
+            // Even though the object is stored as IQuittable, it is really an Employee object.
+            IQuittable quittableEmployee = employee;
+
+            // Calls the Quit() method through the interface reference.
+            quittableEmployee.Quit();
+
+            // Keeps the console window open until the user presses a key.
+            Console.ReadKey();
+        }
+    }

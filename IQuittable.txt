@@ -1,0 +1,54 @@
+using System;
+
+// This interface says that any class using it must include a Quit() method.
+public interface IQuittable
+{
+    // Method required by the interface.
+    void Quit();
+}
+
+// This Employee class implements the IQuittable interface,
+// which means it must provide its own version of Quit().
+public class Employee : IQuittable
+{
+    // Property to store the employee's first name.
+    public string FirstName { get; set; }
+
+    // Property to store the employee's last name.
+    public string LastName { get; set; }
+
+    // Property to store the employee's ID number.
+    public int Id { get; set; }
+
+    // This method is required because Employee implements IQuittable.
+    // It defines what happens when the employee "quits."
+    public void Quit()
+    {
+        Console.WriteLine(FirstName + " " + LastName + " has decided to leave the company.");
+    }
+}
+
+// Main program class where the application starts running.
+class Program
+{
+    // Entry point for the console application.
+    static void Main(string[] args)
+    {
+        // Here we are using polymorphism:
+        // the object is created from the Employee class,
+        // but it is stored in a variable of type IQuittable.
+        IQuittable quittableEmployee = new Employee()
+        {
+            FirstName = "Jordan",
+            LastName = "Reed",
+            Id = 101
+        };
+
+        // This calls the Quit() method through the interface reference.
+        quittableEmployee.Quit();
+
+        // This keeps the console window open until the user presses a key.
+        Console.WriteLine("Press any key to close the program.");
+        Console.ReadKey();
+    }
+}
